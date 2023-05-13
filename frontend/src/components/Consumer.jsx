@@ -19,6 +19,14 @@ const Consumer = () => {
   const [range, setRange] = useState(null);
   const [address, setAddress] = useState(null);
 
+  /**
+   * This function takes a user's address input, converts it to coordinates using an API, and saves the
+   * coordinates and address to local storage.
+   * @returns The function `handleModalAddress` is not returning anything. It is performing some
+   * operations such as checking if `userAddress` is empty, making an API call to get the coordinates
+   * of the address, setting the location and storing the address and location in local storage. It
+   * also toggles the address modal and sets the loading state to false.
+   */
   const handleModalAddress = async () => {
     if (userAddress === "") return alert.error("enter address");
     else {

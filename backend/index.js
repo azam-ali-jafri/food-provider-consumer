@@ -2,15 +2,20 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const { default: mongoose } = require("mongoose");
 const cookieParser = require("cookie-parser");
-const app = express();
-require("dotenv").config({ path: "./.env" });
 const userRouter = require("./router/user_router");
 const foodRouter = require("./router/food_route");
 const cors = require("cors");
 
+const app = express();
+
+require("dotenv").config({ path: "./backend/.env" });
+
+
 const connectToDB = () => {
-  mongoose.connect("mongodb://localhost:27017/Project").then(() => {
+  mongoose.connect(process.env.DB_URI).then(() => {
     console.log("database connected");
+  }).catch(error => {
+    console.log(error);
   });
 };
 

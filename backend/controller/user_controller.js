@@ -3,7 +3,6 @@ const User = require("../model/user_model");
 const axios = require("axios");
 const jwt = require("jsonwebtoken");
 const Food = require("../model/food_model");
-const QueryFilter = require("../utils/queryFilter");
 
 exports.createUser = async (req, res) => {
   var { name, email } = req.body;
@@ -44,21 +43,21 @@ exports.getNearFoodProvider = async (req, res) => {
     const rangeOptions =
       range && coordinates
         ? {
-            location: {
-              $geoWithin: {
-                $centerSphere: [
-                  [coordinates[0], coordinates[1]],
-                  miles / 3963.2,
-                ],
-              },
+          location: {
+            $geoWithin: {
+              $centerSphere: [
+                [coordinates[0], coordinates[1]],
+                miles / 3963.2,
+              ],
             },
-          }
+          },
+        }
         : {};
 
     const addressOptions = address
       ? {
-          address: { $regex: address, $options: "i" },
-        }
+        address: { $regex: address, $options: "i" },
+      }
       : {};
 
     const foodList = await Food.find().find(rangeOptions).find(addressOptions);

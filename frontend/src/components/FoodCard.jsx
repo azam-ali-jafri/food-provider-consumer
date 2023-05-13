@@ -7,6 +7,7 @@ const FoodCard = ({ food, setFoodList }) => {
   const [loading, setLoading] = useState(false);
   const [detailModalOn, toggleDetailModal] = useState(false);
 
+  /* This code is calculating whether a food item has expired or not. */
   const updatedTime = new Date(
     new Date().getTime() - food.expiry * 60 * 60 * 1000
   ).toLocaleString();
@@ -16,6 +17,10 @@ const FoodCard = ({ food, setFoodList }) => {
 
   const user = fetchUser();
 
+  /*
+   * This function sends a DELETE request to the server to delete a food item and updates the food list
+   * state accordingly.
+   */
   const handleDelete = () => {
     setLoading(true);
     axios

@@ -12,6 +12,10 @@ const Login = () => {
     document.title = "Login";
   }, []);
 
+  /**
+   * This function creates a new user in the backend and stores their information in local storage upon
+   * successful Google authentication.
+   */
   const googleSuccess = async (response) => {
     const { email, name } = jwt_decode(response.credential);
     await axios
