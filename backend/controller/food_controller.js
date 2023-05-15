@@ -10,7 +10,7 @@ exports.createFood = async (req, res) => {
     return res.status(500).json({
       message: "enter valid address",
     });
-
+    
   const food = await Food.create(req.body);
 
   const long = addressCoordinates.data.results[0].geometry.lng;
